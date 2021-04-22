@@ -1,21 +1,23 @@
 # Pcapex
 
-**TODO: Add description**
+Simple library for encoding and decoding pcap file data in pure Elixir
 
-## Installation
+## Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `pcapex` to your list of dependencies in `mix.exs`:
+Add `pcapex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [
-    {:pcapex, "~> 0.1.0"}
-  ]
+  [{:pcapex, "~> 0.1.0"}]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/pcapex](https://hexdocs.pm/pcapex).
+```elixir
+alias Pcapex.Dump
+alias Pcapex.Packet
 
+packet = Packet.from_hex(packet_data, DateTime.utc_now() |> DateTime.to_unix(:microsecond))
+binary_dump_data = Dump.new([packet]) |> Dump.to_binary()
+
+%Dump{} = Dump.from_binary(binary_dump_data) 
+```
