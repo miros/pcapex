@@ -1,6 +1,6 @@
 # Pcapex
 
-Simple library for encoding and decoding pcap file data in pure Elixir
+Simple library in pure Elixir for encoding and decoding pcap file data
 
 ## Usage
 

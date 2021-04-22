@@ -9,7 +9,8 @@ defmodule Pcapex.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      dialyzer: dialyzer()
+      dialyzer: dialyzer(),
+      description: "Simple library in pure Elixir for encoding and decoding pcap file data"
     ]
   end
 
