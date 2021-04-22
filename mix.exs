@@ -21,7 +21,10 @@ defmodule Pcapex.MixProject do
   end
 
   defp deps do
-    [{:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false}]
+    [
+      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
   end
 
   defp package do
