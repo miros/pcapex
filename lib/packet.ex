@@ -18,8 +18,18 @@ defmodule Pcapex.Packet do
     }
   end
 
-  @spec from_hex(binary, pos_integer, pos_integer | nil) :: t
+  @spec from_hex(String.t(), pos_integer, pos_integer | nil) :: t
   def from_hex(hex_data, timestamp_usec, original_size \\ nil) do
     hex_data |> Base.decode16!(case: :mixed) |> new(timestamp_usec, original_size)
+  end
+
+  @spec to_hex(t) :: String.t()
+  def to_hex(packet) do
+    Base.encode16(packet.data)
+  end
+
+  @spec datetime(t) :: DateTime.t()
+  def datetime(packet) do
+    DateTime.from_unix!(packet.timestamp_usec, :microsecond)
   end
 end
