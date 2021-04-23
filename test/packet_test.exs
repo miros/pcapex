@@ -16,4 +16,10 @@ defmodule Pcapex.PacketTest do
       assert Packet.to_hex(packet) == "20AA966B40"
     end
   end
+
+  describe "#timestamp_sec" do
+    test "returns packet timestamp in seconds" do
+      assert Packet.new(_data = "", 12345_000_000) |> Packet.timestamp_sec() == 12345.000000
+    end
+  end
 end
