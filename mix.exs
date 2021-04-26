@@ -10,7 +10,8 @@ defmodule Pcapex.MixProject do
       deps: deps(),
       package: package(),
       dialyzer: dialyzer(),
-      description: "Simple library in pure Elixir for encoding and decoding pcap file data"
+      description: "Simple library in pure Elixir for encoding and decoding pcap file data",
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -22,6 +23,7 @@ defmodule Pcapex.MixProject do
 
   defp deps do
     [
+      {:excoveralls, "~> 0.13", only: :test},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]

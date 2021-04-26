@@ -1,5 +1,8 @@
 # Pcapex
 
+![Build status](https://github.com/miros/pcapex/actions/workflows/ci.yml/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/miros/pcapex/badge.svg?branch=master)](https://coveralls.io/github/miros/pcapex?branch=master)
+
 Simple library in pure Elixir for encoding and decoding pcap file data
 
 ## Usage
