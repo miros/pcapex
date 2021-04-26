@@ -40,7 +40,7 @@ jobs:
         path: |
           _build/test/*.plt
           _build/test/*.plt.hash
-        key: ${{ matrix.elixir }}-${{ matrix.otp_release }}-${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        key: plt-cache-${{ matrix.elixir }}-${{ matrix.otp_release }}-${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         # Key patterns to fall back to if we don't find an exact match for `key`
         restore-keys: |
           plt-cache-
