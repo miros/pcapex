@@ -10,7 +10,7 @@ Add `pcapex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:pcapex, "~> 0.0.4"}]
+  [{:pcapex, "~> 0.0.5"}]
 end
 ```
 
