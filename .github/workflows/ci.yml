@@ -50,26 +50,5 @@ jobs:
       run: mix test
     - name: Run dialyzer
       run: mix dialyzer
-
-  send_coveralls:
-    name: Coveralls
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MIX_ENV: test
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Elixir
-      uses: erlef/setup-elixir@v1
-      with:
-        elixir-version: '1.11.0'
-        otp-version: '23.0'
-    - name: Restore dependencies cache
-      uses: actions/cache@v2
-      with:
-        path: deps
-        key: coveralls-${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-    - name: Install dependencies
-      run: mix deps.get
-    - name: Send coveralls
-      run: mix coveralls.github
+    - name: Run cover
+      run: mix cover.lint
