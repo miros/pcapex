@@ -18,6 +18,30 @@ defmodule Pcapex.Packet do
     }
   end
 
+  @type params :: [
+          data: binary,
+          timestamp_usec: pos_integer,
+          timestamp_sec: float,
+          original_size: pos_integer
+        ]
+
+  @usecs_in_sec 1000 * 1000
+
+  def new(params) when is_list(params) do
+    data = Keyword.fetch!(params, :data)
+
+    timestamp_usec =
+      if timestamp_sec = Keyword.get(params, :timestamp_sec) do
+        trunc(timestamp_sec * @usecs_in_sec)
+      else
+        Keyword.fetch!(params, :timestamp_usec)
+      end
+
+    original_size = Keyword.get(params, :original_size, nil)
+
+    new(data, timestamp_usec, original_size)
+  end
+
   @spec from_hex(String.t(), pos_integer, pos_integer | nil) :: t
   def from_hex(hex_data, timestamp_usec, original_size \\ nil) do
     hex_data |> Base.decode16!(case: :mixed) |> new(timestamp_usec, original_size)

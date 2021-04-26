@@ -3,6 +3,24 @@ defmodule Pcapex.PacketTest do
 
   alias Pcapex.Packet
 
+  describe "#new" do
+    test "creates packet with sec timestamp" do
+      assert Packet.new(data: "20AA966B40", timestamp_sec: 12345.123) == %Packet{
+               data: "20AA966B40",
+               original_size: 10,
+               timestamp_usec: 12345_123_000
+             }
+    end
+
+    test "creates packet with usec timestamp" do
+      assert Packet.new(data: "20AA966B40", timestamp_usec: 12345) == %Packet{
+               data: "20AA966B40",
+               original_size: 10,
+               timestamp_usec: 12345
+             }
+    end
+  end
+
   describe "#datetime" do
     test "returns packet timestamp as DateTime" do
       time = DateTime.utc_now()
