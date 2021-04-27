@@ -30,7 +30,7 @@ defmodule Pcapex.PacketTest do
 
   describe "#to_hex" do
     test "returns packet data as hex string" do
-      packet = Packet.from_hex("20AA966B40", DateTime.utc_now() |> DateTime.to_unix(:microsecond))
+      packet = Packet.from_hex("20AA966B40", timestamp_usec: DateTime.utc_now() |> DateTime.to_unix(:microsecond))
       assert Packet.to_hex(packet) == "20AA966B40"
     end
   end

@@ -27,6 +27,7 @@ defmodule Pcapex.Packet do
 
   @usecs_in_sec 1000 * 1000
 
+  @spec new(params) :: t
   def new(params) when is_list(params) do
     data = Keyword.fetch!(params, :data)
 
@@ -42,9 +43,10 @@ defmodule Pcapex.Packet do
     new(data, timestamp_usec, original_size)
   end
 
-  @spec from_hex(String.t(), pos_integer, pos_integer | nil) :: t
-  def from_hex(hex_data, timestamp_usec, original_size \\ nil) do
-    hex_data |> Base.decode16!(case: :mixed) |> new(timestamp_usec, original_size)
+  @spec from_hex(String.t(), params) :: t
+  def from_hex(hex_data, params) do
+    data = Base.decode16!(hex_data, case: :mixed)
+    new(Keyword.merge(params, data: data))
   end
 
   @spec timestamp_sec(t) :: float()
