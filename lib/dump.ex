@@ -1,15 +1,12 @@
 defmodule Pcapex.Dump do
   alias Pcapex.Packet
 
-  @linux_sll_network_type 113
-  @default_netwotk_type @linux_sll_network_type
-
   @magic_number 0xA1B2C3D4
   @version_major 2
   @version_minor 4
   @max_packet_size 65535
 
-  defstruct network_type: @default_netwotk_type,
+  defstruct network_type: nil,
             packets: []
 
   @type t :: %__MODULE__{
@@ -17,8 +14,14 @@ defmodule Pcapex.Dump do
           packets: list(Packet.t())
         }
 
+  @spec linux_sll_network_type() :: integer
+  def linux_sll_network_type(), do: 113
+
+  @spec ethernet_network_type() :: integer
+  def ethernet_network_type(), do: 1
+
   @spec new(list(Packet.t()), pos_integer) :: t
-  def new(packets, network_type \\ @default_netwotk_type) do
+  def new(packets, network_type \\ ethernet_network_type()) do
     %__MODULE__{
       packets: packets,
       network_type: network_type
